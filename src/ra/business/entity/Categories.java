@@ -3,9 +3,10 @@ package ra.business.entity;
 import ra.business.config.InputMethods;
 import ra.business.implement.CategoriesImplement;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Categories
+public class Categories implements Serializable
 {
     private int catalogId;
     private String catalogName;

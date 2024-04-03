@@ -2,10 +2,11 @@ package ra.business.entity;
 
 import ra.business.config.InputMethods;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Product
+public class Product implements Serializable
 {
     private String productId;
     private String productName;

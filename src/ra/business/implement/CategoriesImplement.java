@@ -1,5 +1,6 @@
 package ra.business.implement;
 
+import ra.business.config.IOFile;
 import ra.business.config.InputMethods;
 import ra.business.design.ICategories;
 import ra.business.entity.Categories;
@@ -11,9 +12,12 @@ import java.util.Scanner;
 
 public class CategoriesImplement implements ICategories
 {
-    public static List<Categories> categoriesList = new ArrayList<>();
-    public static int indexCategories= 0;
+    public static List<Categories> categoriesList ;
 
+    public CategoriesImplement()
+    {
+        categoriesList = IOFile.readObjectFromFile(IOFile.PATH_CATEGORY);
+    }
 
 
     @Override
@@ -29,6 +33,7 @@ public class CategoriesImplement implements ICategories
         }else{
             System.err.println("Mã danh mục không tồn tại");
         }
+        IOFile.writeObjectToFile(categoriesList, IOFile.PATH_CATEGORY);
 
     }
 
@@ -42,6 +47,8 @@ public class CategoriesImplement implements ICategories
             categories.displayData();
         }
         System.out.println("====================================================");
+        List<Categories> ce = IOFile.readObjectFromFile(IOFile.PATH_CATEGORY);
+        ce.forEach(Categories::displayData);
     }
 
     @Override
@@ -55,6 +62,7 @@ public class CategoriesImplement implements ICategories
             categories.inputDataCategories(categoriesList);
             categoriesList.add(categories);
         }
+        IOFile.writeObjectToFile(categoriesList, IOFile.PATH_CATEGORY);
     }
 
     @Override
@@ -77,7 +85,8 @@ public class CategoriesImplement implements ICategories
             } else {
                 categoriesList.remove(findById(catalogId));
                 //Thực hiện xóa
-                indexCategories--;
+                IOFile.writeObjectToFile(categoriesList, IOFile.PATH_CATEGORY);
+
             }
         } else {
             System.err.println("Mã danh mục không tồn tại");
@@ -119,6 +128,7 @@ public class CategoriesImplement implements ICategories
                     default:
                         System.err.println("Vui lòng chọn từ 1-4");
                 }
+                IOFile.writeObjectToFile(categoriesList, IOFile.PATH_CATEGORY);
             } while (isExit);
         } else {
             System.err.println("Mã danh mục không tồn tại");
@@ -134,4 +144,5 @@ public class CategoriesImplement implements ICategories
         }
         return null;
     }
+
 }
