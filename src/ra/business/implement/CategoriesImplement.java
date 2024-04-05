@@ -47,8 +47,6 @@ public class CategoriesImplement implements ICategories
             categories.displayData();
         }
         System.out.println("====================================================");
-        List<Categories> ce = IOFile.readObjectFromFile(IOFile.PATH_CATEGORY);
-        ce.forEach(Categories::displayData);
     }
 
     @Override
@@ -86,7 +84,6 @@ public class CategoriesImplement implements ICategories
                 categoriesList.remove(findById(catalogId));
                 //Thực hiện xóa
                 IOFile.writeObjectToFile(categoriesList, IOFile.PATH_CATEGORY);
-
             }
         } else {
             System.err.println("Mã danh mục không tồn tại");
@@ -128,11 +125,12 @@ public class CategoriesImplement implements ICategories
                     default:
                         System.err.println("Vui lòng chọn từ 1-4");
                 }
-                IOFile.writeObjectToFile(categoriesList, IOFile.PATH_CATEGORY);
+
             } while (isExit);
         } else {
             System.err.println("Mã danh mục không tồn tại");
         }
+        IOFile.writeObjectToFile(categoriesList, IOFile.PATH_CATEGORY);
     }
     @Override
     public Categories findById(Integer inputId)

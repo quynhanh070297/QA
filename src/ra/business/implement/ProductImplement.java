@@ -1,5 +1,6 @@
 package ra.business.implement;
 
+import ra.business.config.IOFile;
 import ra.business.config.InputMethods;
 import ra.business.design.IProduct;
 import ra.business.entity.Categories;
@@ -35,6 +36,8 @@ public class ProductImplement implements IProduct
             product.inputDataProduct(productList,CategoriesImplement.categoriesList);
             productList.add(product);
         }
+        IOFile.writeObjectToFile(productList, IOFile.PATH_PRODUCT);
+
 
     }
 
@@ -53,7 +56,7 @@ public class ProductImplement implements IProduct
                 System.out.println("Khong ton tai ID muon xoa");
             }
         }
-
+        IOFile.writeObjectToFile(productList, IOFile.PATH_PRODUCT);
     }
 
     @Override
@@ -110,6 +113,7 @@ public class ProductImplement implements IProduct
                 System.err.println("Mã danh mục không tồn tại");
 
             }
+            IOFile.writeObjectToFile(productList, IOFile.PATH_PRODUCT);
         }
     }
 
@@ -147,6 +151,7 @@ public class ProductImplement implements IProduct
                 System.out.println("San pham khong ton tai");
             }
         }
+        IOFile.writeObjectToFile(productList, IOFile.PATH_PRODUCT);
     }
     @Override
     public void searchByPriceProduct()
@@ -166,5 +171,6 @@ public class ProductImplement implements IProduct
                 System.out.println("Moi nhap lai gia san pham");
             }
         }
+        IOFile.writeObjectToFile(productList, IOFile.PATH_PRODUCT);
     }
 }
